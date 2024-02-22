@@ -1,0 +1,129 @@
+/* Base styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header section */
+  header {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+  }
+  
+  header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header nav h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  header nav li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  /* Hero section */
+  .hero {
+    background-image: url("https://source.unsplash.com/1600x900/?modern,event"); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 100px 0;
+    color: #fff;
+  }
+  
+  .hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+  
+  .hero .btn {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Features section */
+  .features {
+    padding: 50px 0;
+  }
+  
+  .features h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  
+  .feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .feature h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 20px;
+  }
+  
+  .feature p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Footer section */
+  footer {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    header nav ul {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    header nav li {
+      margin-bottom: 10px;
+    }
+  }
+  

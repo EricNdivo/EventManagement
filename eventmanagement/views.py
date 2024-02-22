@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User, auth
 from requests import post
 from django.contrib import messages
@@ -42,7 +42,8 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
+        authenticate(username=username,password=password)
+ 
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
@@ -55,12 +56,13 @@ def login(request):
     return render(request, 'login.html')
 
 
-
 def home(request):
     print(request.user)
     return render(request, 'index.html')
 
+def events(request):
+    print(request.user)
+    #event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'event_detail.html',) #{'event': event})
 
-
-        
-        
+    

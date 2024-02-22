@@ -1,93 +1,25 @@
+{% extends 'base.html' %}
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            width: 300px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .logo {
-            margin-bottom: 20px;
-        }
-
-        .logo img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        input[type="email"],
-        input[type="password"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #4285f4;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #357ae8;
-        }
-
-        .form-footer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #757575;
-        }
-
-        .form-footer a {
-            color: #4285f4;
-            text-decoration: none;
-        }
-
-    </style>
+    <title>{% block title %}Event Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
-    <div class="login-container">
-        <div class="logo">
-            <img src="https://5.imimg.com/data5/BP/GC/XE/SELLER-17645770/companies-event-management-services-500x500.jpg" alt="Logo"/>
-        </div>
-        <form>
-            <input type="email" placeholder="Email" required><br>
-            <input type="password" placeholder="Password" required><br>
-            <input type="submit" value="Login"> <a href="home"> </a>
-        </form>
-        <div class="form-footer">
-            <a href="#">Forgot password?</a> | <a href="{% url 'signup' %}">Create account</a>
-        </div>
-    </div>
-</body>
-</html>
+
+
+
+{% block content %}
+<h1>Login</h1>
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+    <button type="submit">Login</button>
+</form>
+<p>Don't have an account? <a href="">Register</a></p>
+{% endblock %}
