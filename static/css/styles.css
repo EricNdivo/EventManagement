@@ -1,4 +1,4 @@
-/* Base styles */
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -45,7 +45,7 @@ body {
     margin-right: 20px;
   }
   
-  /* Hero section */
+
   .hero {
     background-image: url("https://source.unsplash.com/1600x900/?modern,event"); /* Replace with your image URL */
     background-size: cover;
@@ -76,7 +76,7 @@ body {
     cursor: pointer;
   }
   
-  /* Features section */
+
   .features {
     padding: 50px 0;
   }
@@ -115,7 +115,7 @@ body {
     margin: 0;
   }
   
-  /* Media queries for responsiveness */
+
   @media (max-width: 768px) {
     header nav ul {
       display: flex;

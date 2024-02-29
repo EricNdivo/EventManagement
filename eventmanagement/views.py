@@ -4,6 +4,8 @@ from requests import post
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
+from .forms import EventForm
+
 def signup(request):
     if request.method == 'POST':
         username = request.POST.get['username']
@@ -58,11 +60,27 @@ def login(request):
 
 def home(request):
     print(request.user)
-    return render(request, 'index.html')
+    return render(request, 'base.html')
+
+'''def Event(request):
+    print(request.user)
+    #event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'event_detail.html',) #{'event': event})'''
+
+def create_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('events')  # Redirect to the events page after successfully creating an event
+    else:
+        form = EventForm()
+    return render(request, 'event_detail.html', {'form': form})
+
+def register(request):
+    pass
 
 def events(request):
     print(request.user)
-    #event = get_object_or_404(Event, pk=event_id)
-    return render(request, 'event_detail.html',) #{'event': event})
-
     
+    return render(request, 'events.html', {'events': events})
