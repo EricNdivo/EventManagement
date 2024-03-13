@@ -3,6 +3,11 @@ from django.contrib.auth.models import User, auth
 from requests import post
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import random
+import string
 
 from .forms import EventForm
 
@@ -84,3 +89,17 @@ def events(request):
     print(request.user)
     
     return render(request, 'events.html', {'events': events})
+def buy_events(request):
+    print(request.user)
+    
+    return render(request, 'buyevents.html')
+
+
+def generate_ticket_code(length=8):
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+def buy_tickets(request):
+    
+    
+    
+    return render(request, "buy_tickets.html")

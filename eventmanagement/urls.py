@@ -8,6 +8,8 @@ urlpatterns = [
     path('events',views.events,name='events'),
     path('register',views.register, name='register'),
     path('create_event',views.create_event,name='create_event'),
+    path('buy_events',views.buy_events,name='buy_events'),
+    path('buy_tickets',views.buy_tickets,name='buy_tickets'),
     
     
 ]

@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,59 +8,35 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-
-
     <header>
-        <div class="container">
-            <h1>Event Management System</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="events">Events</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <a href="">Home</a>
+            <a href="buy_events">Events</a>
+            <a href="">About</a>
+            <a href="">Contact</a>
+        </nav>
     </header>
 
-
-    <section class="hero">
-        <div class="container">
-            <h2>Welcome to our Event Management System</h2>
-            <p>Plan, organize, and manage your events effortlessly.</p>
-            <div class="buttons">
-                <a href="create_event" class="btn btn-create">Create Event</a>
-                <a href="#" class="btn btn-sell">Sell Tickets</a>
-                <a href="#" class="btn btn-tickets">View Tickets Sold</a>
+    <!-- carousel -->
+    <div class="carousel">
+        <!-- list item -->
+        <div class="list">
+            <div class="item">
+              <img src="https://i.guim.co.uk/img/media/2c46e39976255f76724f6af1aae317defb9c5644/0_137_4285_2571/master/4285.jpg?width=1900&dpr=1&s=none">
+                <div class="content">
+                    <div class="author">Event Organizers</div>
+                    <div class="title">Create and Manage Events</div>
+                    <div class="topic">Easy Event Organization</div>
+                    <div class="des">
+                        Organize events effortlessly with our intuitive event management system.
+                    </div>
+                    <div class="buttons">
+                        <button><a href="buy_events">Events</a></button>
+                        <button>SUBSCRIBE</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section class="features">
-        <div class="container">
-            <h2>Key Services</h2>
-            <div class="feature">
-                <h3>Create Events</h3>
-                <p>Easily create and manage events with our intuitive interface.</p>
-            </div>
-            <div class="feature">
-                <h3>Sell Tickets</h3>
-                <p>Set up ticket types, prices, and availability for your events.</p>
-            </div>
-            <div class="feature">
-                <h3>View Tickets Sold</h3>
-                <p>Track the number of tickets sold and manage attendee information.</p>
-            </div>
-        </div>
-    </section>
-
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Event Management System. All rights reserved.</p>
-        </div>
-    </footer>
-
+    <!--<script src="{% static 'js/app.js' %}"></script> -->
 </body>
 </html>
