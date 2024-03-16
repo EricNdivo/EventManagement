@@ -3,13 +3,14 @@ from django.contrib.auth.models import User, auth
 from requests import post
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-import random
-import string
+import stripe
+from django.urls import reverse
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
-from .forms import EventForm
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def signup(request):
     if request.method == 'POST':
@@ -67,39 +68,35 @@ def home(request):
     print(request.user)
     return render(request, 'base.html')
 
-'''def Event(request):
-    print(request.user)
-    #event = get_object_or_404(Event, pk=event_id)
-    return render(request, 'event_detail.html',) #{'event': event})'''
-
-def create_event(request):
-    if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('events')  # Redirect to the events page after successfully creating an event
-    else:
-        form = EventForm()
-    return render(request, 'event_detail.html', {'form': form})
-
-def register(request):
-    pass
-
 def events(request):
     print(request.user)
-    
     return render(request, 'events.html', {'events': events})
+
 def buy_events(request):
     print(request.user)
-    
     return render(request, 'buyevents.html')
 
-
-def generate_ticket_code(length=8):
-    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
-
 def buy_tickets(request):
+    return render(request, 'buy_tickets.html')
+
+def credit_card(request):
+    print(request.user)
+    return render(request, 'credit_card.html')
+
+def charge(request):
     
+    amount = 5 
+    if request.method == 'POST':
+        print('Data', request.POST)
+        
+        stripe.Customer.create(
+            email = request.POST.get('email'),
+            name = request.POST.get('name'),
+        )
+        
+        return redirect(reverse('success', args=[amount]))
     
-    
-    return render(request, "buy_tickets.html")
+def successMsg(request, args):
+    amount = args
+    return render(request, 'base.success.html', {'amount':amount})
+
