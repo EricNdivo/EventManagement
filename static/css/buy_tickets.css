@@ -67,17 +67,12 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-.payment-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
 
 .payment-option {
     flex-grow: 1;
     padding: 10px;
     background-color: #007bff;
-    color: #fff;
+    color: #342b96;
     border: none;
     border-radius: 5px;
     cursor: pointer;

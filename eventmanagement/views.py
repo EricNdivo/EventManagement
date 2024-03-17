@@ -9,6 +9,10 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from paypal.standard.forms import PayPalPaymentsForm
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -63,7 +67,6 @@ def login(request):
 
     return render(request, 'login.html')
 
-
 def home(request):
     print(request.user)
     return render(request, 'base.html')
@@ -83,8 +86,7 @@ def credit_card(request):
     print(request.user)
     return render(request, 'credit_card.html')
 
-def charge(request):
-    
+def charge(request):   
     amount = 5 
     if request.method == 'POST':
         print('Data', request.POST)
@@ -100,3 +102,37 @@ def successMsg(request, args):
     amount = args
     return render(request, 'base.success.html', {'amount':amount})
 
+def ticket(request):
+    print(request.user)
+    return render(request, 'ticket.html')
+
+def my_view(request):
+    ipn_url = request.build_absolute_uri(reverse('paypal-ipn'))
+
+    context = {
+        'ipn_url': ipn_url,
+    }
+
+    return render(request, 'my_template.html', context)
+
+def payment_process(request):
+    paypal_dict = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': '10.00',
+        'currency_code': 'USD',
+        'item_name': 'Virtual Ticket',
+        'invoice': 'unique-invoice-id',
+        'notify_url': 'https://yourdomain.com/paypal/ipn/',  
+        'return_url': 'https://yourdomain.com/payment/success/',
+        'cancel_return': 'https://yourdomain.com/payment/cancel/',
+    }
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    return render(request, 'payment_process.html', {'form': form})
+
+@csrf_exempt
+def payment_success(request):
+    return HttpResponse("Payment Successful")
+
+@csrf_exempt
+def payment_cancel(request):
+    return HttpResponse("Payment Canceled")

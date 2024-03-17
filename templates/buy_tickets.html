@@ -8,7 +8,25 @@
     <link rel="stylesheet" href="{% static 'css/buy_tickets.css' %}">
 </head>
 <body>
-
+    <style>
+        /* Style for the anchor tags */
+        .payment-option-link {
+            display: inline-block; /* Ensure anchor tags behave like inline elements */
+            text-decoration: none; /* Remove default underline */
+            margin: 5px; /* Add spacing between buttons */
+        }
+    
+        /* Style for the buttons */
+        .payment-option {
+            display: block; /* Ensure buttons behave like block elements */
+            padding: 10px 20px; /* Adjust padding as needed */
+            background-color: #007bff; /* Example background color */
+            color: #fff; /* Example text color */
+            border: none; /* Remove default button border */
+            border-radius: 5px; /* Add border radius for rounded corners */
+            cursor: pointer; /* Show pointer cursor on hover */
+        }
+    </style>
 <header>
     <h1>Buy Tickets</h1>
 </header>
@@ -35,9 +53,18 @@
         <div class="form-group">
             <label for="paymentMethod">Payment Method</label>
             <div class="payment-buttons">
-                <button type="button"><a href="credit_card" class="payment-option" value="creditCard">Credit Card</a></button>
-                <button type="button" class="payment-option" value="paypal">PayPal</button>
-                <button type="button" class="payment-option" value="bankTransfer">Bank Transfer</button>
+                <a href="credit_card" class="payment-option-link" onclick="submitForm('creditCard')">
+                    <button type="button" class="payment-option" value="creditCard">Credit Card</button>
+                </a>
+                
+                <a href="paypal" class="payment-option-link" onclick="submitForm('paypal')">
+                    <button type="button" class="payment-option" value="paypal">PayPal</button>
+                </a>
+                
+                <a href="#" class="payment-option-link" onclick="submitForm('bankTransfer')">
+                    <button type="button" class="payment-option" value="bankTransfer">Bank Transfer</button>
+                </a>
+                
             </div>
             <input type="hidden" id="selectedPaymentMethod" name="paymentMethod">
         </div>
@@ -48,6 +75,5 @@
 <footer>
     <p>&copy; 2024 Event Management System. All rights reserved.</p>
 </footer>
-
 </body>
 </html>
